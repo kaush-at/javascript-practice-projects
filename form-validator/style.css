@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+/* this means we define scope called root scope 
+so we can use these variables in anywhere in the root scope*/
+:root {
+  /* when we assign the variable using -- */
+  --success-color: #2ecc71;
+  --error-color: #e74c3c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f9fafb;
+  font-family: "Open Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+h2 {
+  text-align: center;
+  margin: 0 0 20px;
+}
+.container {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 400px;
+}
+
+.form {
+  padding: 30px 40px;
+}
+
+.form-control {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  /* because we gonna be positioning the small tag(error message) absolute withing the form control
+  so if you want to position something absolute withing another element that parent element has to be relative */
+  position: relative;
+}
+
+.form-control label {
+  color: #777;
+  /* then it will go their own line */
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-control input {
+  border: 2px solid #f0f0f0;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-control input:focus {
+  outline: 0;
+  border-color: #777;
+}
+
+/* success and error nam data eka input field eke denne me widiyatai 
+if we gonna add in our html manually <div class="form-control success">
+it will become green but we done it using javascript dynamically*/
+.form-control.success input {
+  border-color: var(--success-color);
+}
+
+.form-control.error input {
+  border-color: #e74c3c;
+}
+
+/* instead of using this colors we can create variables that hold that color and give that variables into color 
+property.
+we could create css custom properties which are basically variables in css - define a scope called root 
+look at the line number 4*
+then instead of using - color: #e74c3c; now we can use  */
+.form-control small {
+  color: var(--error-color);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  visibility: hidden;
+  /* different between visibility : hidden and display : none
+  display: none ; will collapse anything arround it and visibility hidden simply make it invisible */
+}
+
+.form-control.error small {
+  visibility: visible;
+}
+
+.form button {
+  cursor: pointer;
+  background-color: #3498db;
+  border: 2px solid #3498db;
+  border-radius: 4px;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+  display: block;
+}
