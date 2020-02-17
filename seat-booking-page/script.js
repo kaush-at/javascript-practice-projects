@@ -3,7 +3,7 @@ const seats = document.querySelectorAll(".row .seat:not(.occupied)");
 const count = document.getElementById("count");
 const total = document.getElementById("total");
 const movieSelect = document.getElementById("movie");
-const ticketPrice = +movieSelect.value; // if we need to get number instead of string  we use + or we can use parseInt
+let ticketPrice = +movieSelect.value; // if we need to get number instead of string  we use + or we can use parseInt
 
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
@@ -13,6 +13,13 @@ function updateSelectedCount() {
   total.innerText = selectedSeatCount * ticketPrice;
 }
 
+//movie select event
+movieSelect.addEventListener("change", e => {
+  ticketPrice = +e.target.value;
+  updateSelectedCount();
+});
+
+// seat click event
 container.addEventListener("click", e => {
   if (
     e.target.classList.contains("seat") &&
