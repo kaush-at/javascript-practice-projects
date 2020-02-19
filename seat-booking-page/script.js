@@ -5,6 +5,8 @@ const total = document.getElementById("total");
 const movieSelect = document.getElementById("movie");
 let ticketPrice = +movieSelect.value; // if we need to get number instead of string  we use + or we can use parseInt
 
+populateUI();
+
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected"); // select the all row eke selected seats
   //- query selectoir all returns html node list every HTML element is a "node".
@@ -28,7 +30,7 @@ function updateSelectedCount() {
 //movie select event
 movieSelect.addEventListener("change", e => {
   ticketPrice = +e.target.value;
-  localStorage.setItem("selectedIndex", e.target.selectedIndex); // The selectedIndex property sets or returns the index of the selected option in a drop-down list.
+  saveMovieData(e.target.selectedIndex, e.target.value); // The selectedIndex property sets or returns the index of the selected option in a drop-down list.
   updateSelectedCount();
 });
 
@@ -45,3 +47,31 @@ container.addEventListener("click", e => {
     updateSelectedCount();
   }
 });
+
+// save selected movie index and price
+function saveMovieData(movieIndex, ticketPrice) {
+  localStorage.setItem("selectedMovieIndex", movieIndex);
+  localStorage.setItem("selectedMoviePrice", ticketPrice);
+}
+
+// get data from local storage and populate UI
+function populateUI() {
+  // const selectedSeats = localStorage.getItem('seatIndex', seatIndex); - we did jason stringify therefore we ned convert back in to an array
+  // therefore we use JSON.parse
+  const selectedSeats = JSON.parse(localStorage.getItem("seatIndex"));
+  if (selectedSeats !== null && selectedSeats.length > 0) {
+    seats.forEach((seat, index) => {
+      if (selectedSeats.indexOf(index) > -1) {
+        seat.classList.add("selected");
+      }
+    });
+  }
+
+  const selectedMovieIndex = localStorage.getItem("selectedMovieIndex");
+  if (selectedMovieIndex !== null) {
+    movieSelect.selectedIndex = selectedMovieIndex;
+  }
+}
+
+// initial count and total
+updateSelectedCount();
