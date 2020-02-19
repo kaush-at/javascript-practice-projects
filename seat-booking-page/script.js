@@ -8,7 +8,11 @@ let ticketPrice = +movieSelect.value; // if we need to get number instead of str
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll(".row .seat.selected");
   const selectedSeatCount = selectedSeats.length; // length gives us number of element in array
-
+  const seatIndex = [...selectedSeats].map(function(seat) {
+    console.log([...selectedSeats]);
+    return [...seats].indexOf(seat); // using the spread operator we pass value of array
+  }); // console.log dala balanna selectedSeats walata enne nodes set ekak
+  console.log(seatIndex);
   count.innerText = selectedSeatCount;
   total.innerText = selectedSeatCount * ticketPrice;
 }
@@ -32,3 +36,5 @@ container.addEventListener("click", e => {
     updateSelectedCount();
   }
 });
+
+// copy selected seats in to array and map through array and return new array with indexes
