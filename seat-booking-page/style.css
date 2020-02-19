@@ -10,7 +10,7 @@ body {
   color: #fff;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /*vertically center karanna */
+  justify-content: center;
   height: 100vh;
   font-family: "Lato", sans-serif;
   margin-left: 0;
