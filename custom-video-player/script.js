@@ -4,6 +4,24 @@ const stop = document.getElementById("stop");
 const progress = document.getElementById("progress");
 const timestamp = document.getElementById("timestamp");
 
+//Update progress and timestamp
+function updateProgress() {
+  progress.value = (video.currentTime / video.duration) * 100;
+
+  // get the minutes
+  let mins = Math.floor(video.currentTime / 60);
+  if (mins < 10) {
+    mins = "0" + String(mins);
+  }
+
+  //   get the seconds
+  let seconds = Math.floor(video.currentTime % 60);
+  if (seconds < 10) {
+    seconds = "0" + seconds.toString();
+  }
+  timestamp.innerHTML = mins + ":" + seconds;
+}
+
 // set video time to progress
 function setVideoProgress() {
   video.currentTime = (+progress.value * video.duration) / 100;
