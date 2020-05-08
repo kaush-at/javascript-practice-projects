@@ -4,6 +4,17 @@ const stop = document.getElementById("stop");
 const progress = document.getElementById("progress");
 const timestamp = document.getElementById("timestamp");
 
+// set video time to progress
+function setVideoProgress() {
+  video.currentTime = (+progress.value * video.duration) / 100;
+}
+
+//stop the video
+function stopVideo() {
+  video.currentTime = 0;
+  video.pause();
+}
+
 //event listner for video element
 // when playing video when we click it stops or play
 video.addEventListener("click", toggleVideoStatus);
