@@ -71,6 +71,13 @@ function formatNumberAsMoney(number) {
   return "$ " + number.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,"); // 12,345.67;
 }
 
+// sort only millionairs
+function filterByMillionairs() {
+  data = data.filter((user) => user.money > 1000000);
+
+  updateDOM();
+}
+
 // event listner for add user button
 addUserBtn.addEventListener("click", getRandomUser);
 
@@ -79,3 +86,6 @@ doubleMoneyBtn.addEventListener("click", doubleMoney);
 
 // sort by wealth
 sortBtn.addEventListener("click", sortByRichest);
+
+// filter by millionairs
+showMillionairsBtn.addEventListener("click", filterByMillionairs);
