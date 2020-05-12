@@ -37,6 +37,30 @@ function addData(user) {
   updateDOM();
 }
 
+
+// assigning default parameters
+function updateDOM(providedData = data) {
+    main.innerHTML = "<h2><strong>Person</strong>Wealth</h2>";
+    providedData.forEach((item) => {
+        const element = document.createElement("div");
+        element.classList.add("person");
+        element.innerHTML = `<strong>${item.name}</strong> ${formatNumberAsMoney(
+            item.money
+        )}`;
+        main.appendChild(element);
+    });
+}
+
+function doubleMoney() {
+    data = data.map((user) => {
+        console.log(user.money * 2);
+        return { ...user, money: user.money * 2 };
+    });
+
+    updateDOM();
+}
+
+
 console.log(data);
 getRandomUser();
 getRandomUser();
