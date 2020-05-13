@@ -78,6 +78,7 @@ function filterByMillionairs() {
   updateDOM();
 }
 
+
 // event listner for add user button
 addUserBtn.addEventListener("click", getRandomUser);
 
@@ -89,3 +90,6 @@ sortBtn.addEventListener("click", sortByRichest);
 
 // filter by millionairs
 showMillionairsBtn.addEventListener("click", filterByMillionairs);
+
+// calculatebtn eventlistner
+calculateBtn.addEventListener("click", getTotalWealth);
