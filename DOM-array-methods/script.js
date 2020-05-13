@@ -78,6 +78,16 @@ function filterByMillionairs() {
   updateDOM();
 }
 
+// calculate the total wealth
+function getTotalWealth() {
+    const wealthTotal = data.reduce((total, user) => (total += user.money), 0);
+    const totalWealth = document.createElement("div");
+    totalWealth.innerHTML = `<h3>Total Wealth : <strong>${formatNumberAsMoney(
+        wealthTotal
+    )}</strong>`;
+
+    main.appendChild(totalWealth);
+}
 
 // event listner for add user button
 addUserBtn.addEventListener("click", getRandomUser);
